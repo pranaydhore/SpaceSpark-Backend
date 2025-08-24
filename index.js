@@ -138,6 +138,7 @@ const { OrderModel } = require("./model/OrderModel");
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
+
 // Define User Schema and Model
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -153,6 +154,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+
+app.get("/",(req,res)=>{
+  res.send("the server is running on port..");
+});
 
 // Holdings routes
 app.get("/allHoldings", async (req, res) => {
@@ -287,6 +292,11 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+app.get("/", (req, res) => {
+  res.send("🚀 SpaceSpark Backend is running");
+});
+
 
 // Connect to database and start server
 mongoose.connect(url)
