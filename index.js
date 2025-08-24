@@ -292,8 +292,9 @@ app.post("/login", async (req, res) => {
 mongoose.connect(url)
   .then(() => {
     console.log("Database is connected..");
-    app.listen(PORT, () => {
+    app.listen(PORT, (req,res) => {
       console.log(`App is listening on port ${PORT}`);
+      res.send("App listening on port");
     });
   })
   .catch(err => console.error("DB connection failed: ", err));
