@@ -170,6 +170,9 @@ app.get("/allHoldings", async (req, res) => {
   }
 });
 
+app.get("/",(req,res)=>{
+  res.send("Server is runing on port");
+})
 // Positions routes
 app.get("/allPositions", async (req, res) => {
   try {
@@ -302,9 +305,8 @@ app.get("/", (req, res) => {
 mongoose.connect(url)
   .then(() => {
     console.log("Database is connected..");
-    app.listen(PORT, (req,res) => {
+    app.listen(PORT, () => {
       console.log(`App is listening on port ${PORT}`);
-      res.send("App listening on port");
     });
   })
   .catch(err => console.error("DB connection failed: ", err));
